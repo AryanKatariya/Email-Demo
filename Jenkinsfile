@@ -1,9 +1,5 @@
 pipeline{
 	agent any
-
-	tools {
-        	jdk 'JAVA_17'
-   	 }	
 	
 	stages{
 		stage('Check for Changes') {
