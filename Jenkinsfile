@@ -1,5 +1,9 @@
 pipeline{
 	agent any
+
+	tools {
+        	jdk 'JAVA_HOME'
+   	 }	
 	
 	stages{
 		stage('Check for Changes') {
