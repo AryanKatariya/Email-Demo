@@ -5,7 +5,9 @@ pipeline{
 		stage('Check for Changes') {
             		steps {
                 		script {
-					sh 'git diff'
+					def commitFiles = sh(script: "git diff-tree --no-commit-id --name-only -r HEAD", returnStdout: true).trim().tokenize('\n')
+					echo $commitFiles
+
 				}
 			}
 		}
