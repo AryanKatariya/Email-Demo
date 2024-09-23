@@ -26,13 +26,8 @@ pipeline {
                         // Print the current user as a debug step
                         sh 'whoami'
 
-                        // Send email notification for changes
-                        mail to: "ashuverma0499@gmail.com",
-                             subject: "Files Changed in Last Commit",
-                             body: "The following files were changed (new or deleted):\n" + changes.join('\n')
-                    } else {
-                        echo 'No new or deleted files committed.'
-                    }
+                    } 
+                    
                 }
             }
         }
