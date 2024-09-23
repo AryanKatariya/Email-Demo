@@ -8,6 +8,19 @@ pipeline{
 					def commitFiles = sh(script: "git diff-tree --no-commit-id --name-only -r HEAD", returnStdout: true).trim().tokenize('\n')
 
             			echo "Changed files in the last commit: ${commitFiles.join(', ')}"
+				
+					def newFiles = commitFiles.findAll { file -> return sh(script: "git ls-files --error-unmatch ${file}", returnStatus: true) != 0
+            				}
+
+				if (newFiles) {
+                			mail to: "ashuverma0499@gmail.com",
+                     			subject: "New Files Committed",
+                     			body: "The following new files were committed:\n" + newFiles.join('\n')
+            			} 
+				else {
+                			echo 'No new files committed.'
+            			}
+				
 				}
 			}
 		}
