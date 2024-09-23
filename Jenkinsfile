@@ -5,9 +5,8 @@ pipeline{
 		stage('Check for Changes') {
             		steps {
                 		script {
-                    			checkout scm
-					def user = sh(script: 'whoami', returnStdout: true).trim()
-                    			echo "Current user: ${user}"
+					def javaVersion = sh(script: 'java -version', returnStdout: true).trim()
+                    			echo "Java version: ${javaVersion}"
 				}
 			}
 		}
