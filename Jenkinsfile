@@ -6,6 +6,8 @@ pipeline{
             		steps {
                 		script {
                     			checkout scm
+					def user = sh(script: 'whoami', returnStdout: true).trim()
+                    			echo "Current user: ${user}"
 				}
 			}
 		}
