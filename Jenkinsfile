@@ -18,9 +18,8 @@ pipeline {
                     def changes = newFiles + deletedFiles
 
                     if (changes) {
-			mail to: "ashuverma0499@gmail.com",
-                        subject: "Files Changed in Last Commit",
-                        body: "The following files were changed (new or deleted):\n" + changes.join('\n')
+			def message = "The following files were changed (new or deleted):\n" + changes.join('\n')
+                        sh "echo '${message}' | mail -s 'Files Changed in Last Commit' aryankatariya21@gmail.com"
                     } 
                     
                 }
