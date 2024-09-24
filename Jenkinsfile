@@ -21,7 +21,7 @@ pipeline {
 			def message = "The following files were changed (new or deleted):\n" + changes.join('\n')
                         sh """
 				(echo "Subject: Files Changed in Last Commit"; 
-                             	echo "To: aryankatariya21@gmail.com"; 
+                             	echo "To: shadydoshita@gmail.com"; 
                              	echo "Content-Type: text/plain"; 
                              	echo ""; 
                              	echo "${message}") | sendmail -t
