@@ -19,7 +19,12 @@ pipeline {
 
                     if (changes) {
 			def message = "The following files were changed (new or deleted):\n" + changes.join('\n')
-                        sh "echo '${message}' | mail -s 'Files Changed in Last Commit' aryankatariya21@gmail.com"
+                        sh """
+                            echo "${message}" | sendmail -t <<EOF
+                            To: aryankatariya21@gmail.com
+                            Subject: Files Changed in Last Commit
+                            EOF
+                        """
                     } 
                     
                 }
