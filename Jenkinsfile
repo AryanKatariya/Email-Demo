@@ -24,14 +24,15 @@ pipeline {
                     if (changes) {
                         def message = "The following files were changed (new, deleted, or modified):\n" + changes.join('\n')
                         sh """
-                            //(echo "Subject: Files Changed in Last Commit";
-                            //echo "To: shadydoshita@gmail.com";
-                            //echo "Content-Type: text/plain";
-                            echo "Hello";
-                            //echo "${message}") | sendmail -t
+                            echo "Subject: Files Changed in Last Commit" | sendmail -t \
+                            -a "To: shadydoshita@gmail.com" \
+                            -a "Content-Type: text/plain" \
+                            -a "" \
+                            -a "${message}"
                         """
-                    } 
-                    
+                    } else {
+                        echo 'No new, deleted, or modified files found.'
+                    }
                 }
             }
         }
